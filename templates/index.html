@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shubhankar AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .error {
+            color: red;
+        }
+        .answer {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to AI Assistant</h1>
+    <form method="POST">
+        <input type="text" name="question" placeholder="Ask your question here..." required>
+        <input type="submit" value="Get Answer">
+    </form>
+    
+    {% if error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
+    
+    {% if question %}
+    <p>You asked: <strong>{{ question }}</strong></p>
+    <div class="answer">Answer: {{ answer }}</div>
+    {% endif %}
+
+    {% if audio_file %}
+<audio controls autoplay>
+    <source src="{{ audio_file }}" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+{% endif %}
+
+</body>
+</html>
