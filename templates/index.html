@@ -10,6 +10,12 @@
             max-width: 600px;
             margin: 50px auto;
             text-align: center;
+            background: linear-gradient(to right, #096dba, #d04a06); /* Gradient background */
+            color: white; /* Text color */
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
         }
         form {
             margin-bottom: 20px;
@@ -18,12 +24,16 @@
             width: 80%;
             padding: 10px;
             margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
         }
         input[type="submit"] {
             padding: 10px 20px;
             background-color: #4CAF50;
             color: white;
             border: none;
+            border-radius: 5px;
             cursor: pointer;
         }
         .error {
@@ -32,6 +42,10 @@
         .answer {
             margin-top: 20px;
             font-weight: bold;
+            text-align: left; /* Align the answer to the left */
+        }
+        audio {
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -41,22 +55,24 @@
         <input type="text" name="question" placeholder="Ask your question here..." required>
         <input type="submit" value="Get Answer">
     </form>
-    
+
     {% if error %}
     <p class="error">{{ error }}</p>
     {% endif %}
     
     {% if question %}
     <p>You asked: <strong>{{ question }}</strong></p>
-    <div class="answer">Answer: {{ answer }}</div>
+    <div class="answer">
+        <h3>Answer:</h3>
+        <p>{{ answer }}</p> <!-- Displaying answer as plain text -->
+    </div>
     {% endif %}
 
     {% if audio_file %}
-<audio controls autoplay>
-    <source src="{{ audio_file }}" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
-{% endif %}
-
+    <audio controls autoplay>
+        <source src="{{ audio_file }}" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    {% endif %}
 </body>
 </html>
